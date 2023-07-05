@@ -156,13 +156,14 @@ func main() {
 
 	createPostHandler := func(w http.ResponseWriter, r *http.Request) {
 		log.Print("Post received!")
+		time.Sleep(2 * time.Second)
 		content := r.PostFormValue("content")
 		username := r.PostFormValue("username")
 		log.Print("\n")
 
 		htmlString := fmt.Sprintf(`
-		<div class="bg-blue-50 rounded-xl px-4 py-2">
-		<div class="flex flex-row place-items-center justify-between">
+		<div class="px-4 py-2 bg-blue-50 rounded-xl">
+		<div class="flex flex-row justify-between place-items-center">
 			<p class="text-sm font-light">@%s</p>
 			<p class="text-xs">%s</p>
 		</div>

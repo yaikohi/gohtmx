@@ -11,14 +11,30 @@
     <title>GoHtmx</title>
 </head>
 
-<body>
-    <h1 class="text-5xl font-black text-blue-800">Go + Htmx + tailwindcss</h1>
-    <div class="flex">
-
-        <div class="flex max-w-md flex-col gap-2" id="post-list">
+<body class="flex">
+    <!-- header -->
+    <header class="flex flex-col gap-2">
+        <h1 class="text-5xl font-black text-blue-800">posts</h1>
+    </header>
+    <!--  posts -->
+    <div class="flex flex-col max-w-md w-full mx-auto border-[2px] border-border h-screen">
+        <div class="">
+            <form class="flex flex-col gap-2 " hx-post="/create-post/" hx-target="#post-list" hx-swap="afterbegin">
+                <label class="text-xs" for="content" hidden>content</label>
+                <input
+                    class="flex w-full h-10 px-3 py-2 text-sm border rounded-md border-input bg-background ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                    name="content" type="text">
+                <input
+                    class="flex w-full h-10 px-3 py-2 text-sm border rounded-md border-input bg-background ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                    name="username" type="text" value="me!23">
+                <button
+                    class="inline-flex items-center justify-center h-10 px-4 py-2 text-sm font-medium transition-colors rounded-md ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90">post</button>
+            </form>
+        </div>
+        <div class="flex flex-col gap-2" id="post-list">
             {{ range .Posts}}
-            <div class="bg-blue-50 rounded-xl px-4 py-2">
-                <div class="flex flex-row place-items-center justify-between">
+            <div class="px-4 py-2 bg-blue-50 rounded-xl">
+                <div class="flex flex-row justify-between place-items-center">
                     <p class="text-sm font-light">@{{.Username}}</p>
                     <p class="text-xs">{{ .Timestamp}}</p>
                 </div>
@@ -28,15 +44,12 @@
             </div>
             {{ end }}
         </div>
-        <div class="">
-            <form class=" flex flex-col gap-2" hx-post="/create-post/" hx-target="#post-list" hx-swap="afterbegin">
-                        <label class="text-xs" for="content" hidden>content</label>
-                        <input name="content" type="text">
-                        <input name="username" type="text" value="me!23">
-                        <input type="submit">
-                        </form>
-                </div>
-            </div>
+    </div>
+    
+    <!-- footer -->
+    <footer class="flex flex-col gap-2 ">
+                    <p class="text-xs italic">go htmx tailwindcss</p>
+                    </footer>
 </body>
 
 </html>
